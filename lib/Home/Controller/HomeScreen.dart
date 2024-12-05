@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
 import '../ViewModel/home_viewmodel.dart';
 import '../Model/home_model.dart';
+import 'InfographicsWidget.dart';
 
 class HomeScreen extends StatefulWidget {
 @override
@@ -52,29 +53,32 @@ class DrawHomeListView extends StatelessWidget {
       int index = entry.key;
       SectionItem sectionItem = entry.value;
 
-      if (index > 0) {
-        widgets.add(SizedBox(height: 5));
-      }
+      // if (index > 0) {
+      //   widgets.add(SizedBox(height: 5));
+      // }
       if (sectionItem.collectionType == CollectionType.infographics) {
-        widgets.add(Collectionwidget(items: sectionItem.newsItems));
+        widgets.addAll([
+          InfographicsWidget(sectionItem: sectionItem),
+          SizedBox(height: 18)
+        ]);
       } else {
+
+        if (index > 0) {
+          widgets.addAll([
+            SectionSeparator(),
+            SizedBox(height: 18,)]);
+        }
         if (sectionItem.blockName != "") {
           widgets.add(
             Padding(
               padding: EdgeInsets.only(left: 12, bottom: 12),
-              child: Text(sectionItem.blockName, style: TextStyle(fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
+              child: Text(sectionItem.blockName, style: TextStyle(color: Color.fromRGBO(33, 33, 33, 1), fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
             )
           );
         }
         widgets.addAll([
           HeaderWidget(newsItem: sectionItem.newsItems.first),
           ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
-          SizedBox(height: 18,)]);
-      }
-
-      if (index < sectionItems.length - 1) {
-        widgets.addAll([
-          SectionSeparator(),
           SizedBox(height: 18,)]);
       }
     }
