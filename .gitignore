@@ -1,0 +1,74 @@
+# Flutter/Dart related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+generated/
+
+# IntelliJ/Android Studio
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# iOS
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/App.framework/
+ios/Flutter/engine/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+*.mode1v3
+*.pbxuser
+*.xcworkspace
+*.xcodeproj/*
+!ios/Runner.xcodeproj/project.pbxproj
+!ios/Runner.xcodeproj/xcshareddata/
+!ios/Runner.xcodeproj/xcshareddata/xcschemes/
+.DS_Store
+
+# Android
+.android/
+app/google-services.json
+android/key.properties
+android/app/debug.keystore
+
+# Linux
+linux/flutter/ephemeral/
+
+# Windows
+windows/flutter/ephemeral/
+
+# macOS
+macos/Flutter/ephemeral/
+
+# Web
+web/.dart_tool/
+
+# Firebase
+firebase_app_id_file.json
+
+# Miscellaneous
+*.log
+*.lock
+*.tmp
+*.temp
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+*.rej
+
+# User-specific
+*.user
+*.swp
+.idea/
+.DS_Store
+Thumbs.db
