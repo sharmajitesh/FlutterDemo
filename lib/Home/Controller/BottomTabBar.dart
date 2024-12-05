@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
 import 'package:HT_ONE/Home/Controller/HomeScreen.dart';
 
 class BottomTabBar extends StatefulWidget {
