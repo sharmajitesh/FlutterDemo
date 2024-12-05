@@ -1,8 +1,7 @@
-import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
+import 'package:HT_ONE/Home/Model/premium_model.dart';
+import 'package:HT_ONE/Home/ViewModel/premium_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
-import '../ViewModel/home_viewmodel.dart';
-import '../Model/home_model.dart';
 
 class Premiumscreen extends StatefulWidget {
   @override
@@ -10,28 +9,28 @@ class Premiumscreen extends StatefulWidget {
 }
 
 class _Premiumscreen extends State<Premiumscreen> {
-  late Future<HomeResponse?> _homeData;
+  late Future<PremiumResponse?> _premiumData;
 
   @override
   void initState() {
     super.initState();
-    _homeData = ApiService().fetchHomeData();
+    _premiumData = PremiumApiService().fetchPremiumData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("HT One")),
-      body: FutureBuilder<HomeResponse?>(
-        future: _homeData,
+      body: FutureBuilder<PremiumResponse?>(
+        future: _premiumData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError || snapshot.data == null) {
             return const Center(child: Text("Failed to load data"));
           } else {
-            final homeResponse = snapshot.data!;
-            return DrawHomeListView(homeResponse: homeResponse);
+            final premiumRes = snapshot.data!;
+            return DrawPremiumView(premiumResponse: premiumRes );
           }
         },
       ),
@@ -39,47 +38,44 @@ class _Premiumscreen extends State<Premiumscreen> {
   }
 }
 
-class DrawHomeListView extends StatelessWidget {
-  const DrawHomeListView({
+class DrawPremiumView extends StatelessWidget {
+  const DrawPremiumView({
     super.key,
-    required this.homeResponse,
+    required this.premiumResponse,
   });
 
-  final HomeResponse homeResponse;
+  final PremiumResponse premiumResponse;
 
   @override
   Widget build(BuildContext context) {
-    var sectionItems = homeResponse.sectionItems;
+    var sectionItems = premiumResponse.premiumItems;
+    List<Widget> widgets = [];
+    widgets.add(HeaderPremium());
+    for (var entry in sectionItems.asMap().entries) {
+      int index = entry.key;
+      PremiumItem sectionItem = entry.value;
+
+      if (index == 0) {
+        widgets.add(HeaderWidget(premiumItem: sectionItem));
+      } else {
+       if(index==1) widgets.add(SizedBox(height: 10));
+        widgets.add(SectionSeparator());
+        widgets.add(ListItemWidget(premiumItem: sectionItem));
+      }
+
+    }
     return Scaffold(
+      backgroundColor: Color(0xFFEDF4F4),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderPremium(),
-            for (var sectionItem in sectionItems)
-              Column(
-                children: [
-                  if (sectionItem.collectionType == CollectionType.infographics)
-                    Collectionwidget(sectionItem: sectionItem),
-                  HeaderWidget(newsItem: sectionItem.newsItems.first),
-                  ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  SectionSeparator(),
-                  SizedBox(
-                    height: 18,
-                  )
-                ],
-              )
-            // ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
-            //
-          ],
+          children: widgets,
         ),
       ),
     );
   }
 }
+
 
 class HeaderPremium extends StatelessWidget {
   const HeaderPremium({super.key});
@@ -87,8 +83,7 @@ class HeaderPremium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(12),
-        height: 30,
+        margin: EdgeInsets.all(10),
         width: double.infinity,
         child:
             const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -97,10 +92,10 @@ class HeaderPremium extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: "Lato",
                   fontWeight: FontWeight.w900,
-                  color: Colors.blue),
+                  color: Colors.black),
               overflow: TextOverflow.ellipsis),
           SizedBox(height: 10),
-          Icon(Icons.workspace_premium_sharp, color: Colors.blue)
+          Padding(padding: EdgeInsets.only(left: 10), child: Icon(Icons.workspace_premium_sharp, color: Color(0xFF29A5BA))),
         ]));
   }
 }
@@ -112,19 +107,19 @@ class SectionSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 12, right: 12),
-      height: 2,
+      height: 0.75,
       width: double.infinity,
-      color: Color.fromRGBO(33, 33, 33, 1),
+      color: Color(0xFFA8C8C8),
     );
   }
 }
 
 class HeaderWidget extends StatelessWidget {
-  final NewsItem newsItem;
+  final PremiumItem premiumItem;
 
   const HeaderWidget({
     Key? key,
-    required this.newsItem,
+    required this.premiumItem,
   }) : super(key: key);
 
   @override
@@ -137,12 +132,12 @@ class HeaderWidget extends StatelessWidget {
         height: imageHeight,
         // Height of the header
         width: double.infinity,
-        margin: EdgeInsets.only(left: 12, right: 12, top: 12),
+        margin: EdgeInsets.only(left: 12, right: 12),
         // Full width
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
           image: DecorationImage(
-            image: NetworkImage(newsItem.wallpaperLarge),
+            image: NetworkImage(premiumItem.wallpaperLarge),
             // Background image from model
             fit: BoxFit.cover, // Cover the entire container
           ),
@@ -206,7 +201,7 @@ class HeaderWidget extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            newsItem.headline,
+                            premiumItem.mobileHeadline,
                             style: const TextStyle(
                               fontSize: 16,
                               fontFamily: "Lato",
@@ -221,7 +216,7 @@ class HeaderWidget extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                newsItem.section.toUpperCase(),
+                                premiumItem.section.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 10,
                                   fontFamily: "Lato",
@@ -231,7 +226,7 @@ class HeaderWidget extends StatelessWidget {
                               ),
                               SizedBox(width: 12),
                               Text(
-                                HelperUtils.getTimeRead(newsItem.timeToRead),
+                                HelperUtils.getTimeRead(premiumItem.timeToRead),
                                 style: const TextStyle(
                                   fontSize: 10,
                                   fontFamily: "Lato",
@@ -252,35 +247,13 @@ class HeaderWidget extends StatelessWidget {
   }
 }
 
-class ListItemsWidget extends StatefulWidget {
-  final List<NewsItem> items;
 
-  const ListItemsWidget({Key? key, required this.items}) : super(key: key);
-
-  @override
-  State<ListItemsWidget> createState() => ListItemsWidgetState();
-}
-
-class ListItemsWidgetState extends State<ListItemsWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (var item in widget.items)
-          ListItemWidget(
-              newsItem: item,
-              timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
-      ],
-    );
-  }
-}
 
 class ListItemWidget extends StatelessWidget {
-  final NewsItem newsItem;
-  final String timeToRead;
+  final PremiumItem premiumItem;
 
   const ListItemWidget(
-      {Key? key, required this.newsItem, required this.timeToRead})
+      {Key? key, required this.premiumItem})
       : super(key: key);
 
   @override
@@ -298,7 +271,7 @@ class ListItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  newsItem.headline,
+                  premiumItem.mobileHeadline,
                   style: const TextStyle(
                     fontSize: 16,
                     fontFamily: "Lato",
@@ -313,7 +286,7 @@ class ListItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      newsItem.section.toUpperCase(),
+                      premiumItem.section.toUpperCase(),
                       style: const TextStyle(
                         fontSize: 10,
                         fontFamily: "Lato",
@@ -325,7 +298,7 @@ class ListItemWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 12),
                     Text(
-                      timeToRead,
+                    HelperUtils.getTimeRead(premiumItem.timeToRead),
                       style: const TextStyle(
                         fontSize: 10,
                         fontFamily: "Lato",
@@ -348,7 +321,7 @@ class ListItemWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3.0), // Rounded corners
               image: DecorationImage(
-                image: NetworkImage(newsItem.thumbImage),
+                image: NetworkImage(premiumItem.thumbImage),
                 fit: BoxFit.cover,
               ),
             ),
