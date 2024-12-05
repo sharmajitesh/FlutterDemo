@@ -91,7 +91,7 @@ class HeaderPremium extends StatelessWidget {
         height: 30,
         width: double.infinity,
         child:
-        const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("HT Premium",
               style: TextStyle(
                   fontSize: 20,
@@ -129,111 +129,126 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double screenWidth = MediaQuery.of(context).size.width;
     // Calculate the height of the image based on the width
     double imageHeight = screenWidth * 0.56;
 
     return Container(
-      height: imageHeight,
-      // Height of the header
-      width: double.infinity,
-      margin: EdgeInsets.only(left: 12, right: 12),
-      // Full width
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
-        image: DecorationImage(
-          image: NetworkImage(newsItem.wallpaperLarge),
-          // Background image from model
-          fit: BoxFit.cover, // Cover the entire container
-        ),
-      ),
-      child: Container(
-        // Overlay with gradient
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            // Apply corner radius here
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black.withOpacity(0.7), // Dark gradient at the bottom
-              ],
-            ),
+        height: imageHeight,
+        // Height of the header
+        width: double.infinity,
+        margin: EdgeInsets.only(left: 12, right: 12, top: 12),
+        // Full width
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
+          image: DecorationImage(
+            image: NetworkImage(newsItem.wallpaperLarge),
+            // Background image from model
+            fit: BoxFit.cover, // Cover the entire container
           ),
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            // mainAxisAlignment: MainAxisAlignment.end, // Align to bottom
-            children: [
-              Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.0),
-                      color: Color(0xFF29A5BA)),
-                  child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        "PREMIUM",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontFamily: "Lato",
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ))),
+        ),
+        child: Stack(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Positioned(
+              top: 10,
+              left: 12,
+              child:
+                Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4.0),
+                        color: Color(0xFF29A5BA)),
+                    child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Text(
+                          "PREMIUM",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: "Lato",
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ))),
 
-              Padding(padding: EdgeInsets.only(top: 60.0),
-                child: Column(
-                children: [
-                Text(
-                newsItem.headline,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
+            ),
+
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+                child:Container(
+              // Overlay with gradient
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                // Apply corner radius here
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.7),
+                    // Dark gradient at the bottom
+                  ],
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 8),
-              // Description
-              Row(
+              padding: const EdgeInsets.fromLTRB(12.0,0.0, 0.0, 12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end, // Align to bottom
                 children: [
-                  Text(
-                    newsItem.section.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 10,
-                      fontFamily: "Lato",
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(238, 238, 238, 1),
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Text(
-                    HelperUtils.getTimeRead(newsItem.timeToRead),
-                    style: const TextStyle(
-                      fontSize: 10,
-                      fontFamily: "Lato",
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(238, 238, 238, 1),
-                    ),
-                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 0.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            newsItem.headline,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 8),
+                          // Description
+                          Row(
+                            children: [
+                              Text(
+                                newsItem.section.toUpperCase(),
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.w900,
+                                  color: Color.fromRGBO(238, 238, 238, 1),
+                                ),
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                HelperUtils.getTimeRead(newsItem.timeToRead),
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.w900,
+                                  color: Color.fromRGBO(238, 238, 238, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
                 ],
               ),
-            ],
-          )
-      ),
-      ],
-    ),)
-    ,
-    );
+            )
+            )
+          ],
+        ));
   }
 }
 
