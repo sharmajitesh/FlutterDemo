@@ -30,8 +30,9 @@ class HomeResponse {
 class SectionItem {
   final String blockName;
   final List<NewsItem> newsItems;
+  final CollectionType collectionType;
 
-  SectionItem({required this.blockName, required this.newsItems});
+  SectionItem({required this.blockName, required this.newsItems, required this.collectionType});
 
   factory SectionItem.fromJson(Map<String, dynamic> json) {
     return SectionItem(
@@ -39,6 +40,7 @@ class SectionItem {
       newsItems: (json['blockItems'] as List)
           .map((item) => NewsItem.fromJson(item))
           .toList(),
+        collectionType: collectionTypeFromString(json['collectionType'])
     );
   }
 }
@@ -51,6 +53,7 @@ class NewsItem {
   final String wallpaperLarge;
   final String section;
   final int timeToRead;
+
   NewsItem({
     required this.headline,
     required this.shortDescription,
@@ -69,7 +72,30 @@ class NewsItem {
       thumbImage: json['thumbImage'],
       wallpaperLarge: json['wallpaperLarge'],
       section: json['section'],
-      timeToRead: json['timeToRead'] as int ?? 0,
+      timeToRead: json['timeToRead'] as int ?? 0
     );
+  }
+}
+
+enum CollectionType {
+  defaultType,
+  pickOfTheDay,
+  infographics,
+  numberTheory,
+}
+
+CollectionType collectionTypeFromString(String collectionType) {
+  switch (collectionType) {
+    case 'default':
+      return CollectionType.defaultType;
+    case 'collection_pickOfTheDay':
+      return CollectionType.pickOfTheDay;
+    case 'collection_infographics':
+      return CollectionType.infographics;
+    case 'collection_number_theory':
+      return CollectionType.numberTheory;
+    default:
+      return CollectionType.defaultType;
+      throw ArgumentError('Unknown collection type: $collectionType');
   }
 }

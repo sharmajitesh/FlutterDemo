@@ -45,20 +45,48 @@ class DrawHomeListView extends StatelessWidget {
   final HomeResponse homeResponse;
   @override
   Widget build(BuildContext context) {
-    var firstNews = homeResponse.sectionItems[0].newsItems;
+    var sectionItems = homeResponse.sectionItems;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeaderWidget(newsItem: firstNews.first),
-            ListItemsWidget(items: firstNews.sublist(1)),
+            for (var sectionItem in sectionItems)
+
+              Column(
+                children: [
+                  if (sectionItem.collectionType == CollectionType.infographics) Collectionwidget(items: sectionItem.newsItems),
+
+                  HeaderWidget(newsItem: sectionItem.newsItems.first),
+                  ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
+                  SizedBox(height: 18,),
+                  SectionSeparator(),
+                  SizedBox(height: 18,)
+                ],
+              )
+            // ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
+            //
           ],
         ),
       ),
     );
   }
 }
+
+class SectionSeparator extends StatelessWidget {
+  const SectionSeparator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 12, right: 12),
+      height: 2,
+      width: double.infinity,
+      color: Color.fromRGBO(33, 33, 33, 1),
+    );
+  }
+}
+
 class HeaderWidget extends StatelessWidget {
   final NewsItem newsItem;
 
@@ -76,8 +104,10 @@ class HeaderWidget extends StatelessWidget {
 
     return Container(
       height: imageHeight, // Height of the header
-      width: double.infinity, // Full width
+      width: double.infinity,
+      margin: EdgeInsets.only(left: 12, right: 12),// Full width
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
         image: DecorationImage(
           image: NetworkImage(newsItem.wallpaperLarge), // Background image from model
           fit: BoxFit.cover, // Cover the entire container
@@ -86,6 +116,7 @@ class HeaderWidget extends StatelessWidget {
       child: Container(
         // Overlay with gradient
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -160,8 +191,6 @@ class ListItemsWidgetState extends State<ListItemsWidget> {
       children: [
         for (var item in widget.items)
           ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
-
-        Collectionwidget(items: widget.items)
       ],
     );
   }
@@ -238,8 +267,9 @@ class ListItemWidget extends StatelessWidget {
           // Image (right-aligned)
           ClipRRect(
             borderRadius: BorderRadius.circular(4.0), // Rounded corners
+
             child: Image.network(
-              newsItem.thumbImage,
+              newsItem.wallpaperLarge,
               height: imageHeight,
               width: imageWidth,
               fit: BoxFit.cover,
