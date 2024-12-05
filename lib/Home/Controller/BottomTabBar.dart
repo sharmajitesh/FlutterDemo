@@ -1,4 +1,4 @@
-import 'package:HT_ONE/Premium/Controller/PremiumScreen.dart';
+import 'package:HT_ONE/Home/Screen/PremiumScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Home/Controller/HomeScreen.dart';
 

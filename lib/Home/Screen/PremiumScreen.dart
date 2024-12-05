@@ -58,7 +58,7 @@ class DrawPremiumView extends StatelessWidget {
       if (index == 0) {
         widgets.add(HeaderWidget(premiumItem: sectionItem));
       } else {
-       if(index==1) widgets.add(SizedBox(height: 10));
+        if(index==1) widgets.add(SizedBox(height: 10));
         widgets.add(SectionSeparator());
         widgets.add(ListItemWidget(premiumItem: sectionItem));
       }
@@ -86,7 +86,7 @@ class HeaderPremium extends StatelessWidget {
         margin: EdgeInsets.all(10),
         width: double.infinity,
         child:
-            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("HT Premium",
               style: TextStyle(
                   fontSize: 20,
@@ -151,96 +151,96 @@ class HeaderWidget extends StatelessWidget {
               top: 10,
               left: 12,
               child:
-                Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0),
-                        color: Color(0xFF29A5BA)),
-                    child: const Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Text(
-                          "PREMIUM",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontFamily: "Lato",
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ))),
+              Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Color(0xFF29A5BA)),
+                  child: const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text(
+                        "PREMIUM",
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ))),
 
             ),
 
             Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
                 child:Container(
-              // Overlay with gradient
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                // Apply corner radius here
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withOpacity(0.7),
-                    // Dark gradient at the bottom
-                  ],
-                ),
-              ),
-              padding: const EdgeInsets.fromLTRB(12.0,0.0, 0.0, 12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end, // Align to bottom
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(top: 0.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            premiumItem.mobileHeadline,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                            ),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 8),
-                          // Description
-                          Row(
+                  // Overlay with gradient
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    // Apply corner radius here
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.7),
+                        // Dark gradient at the bottom
+                      ],
+                    ),
+                  ),
+                  padding: const EdgeInsets.fromLTRB(12.0,0.0, 0.0, 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end, // Align to bottom
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(top: 0.0),
+                          child: Column(
                             children: [
                               Text(
-                                premiumItem.section.toUpperCase(),
+                                premiumItem.mobileHeadline,
                                 style: const TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 16,
                                   fontFamily: "Lato",
                                   fontWeight: FontWeight.w900,
-                                  color: Color.fromRGBO(238, 238, 238, 1),
+                                  color: Colors.white,
                                 ),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(width: 12),
-                              Text(
-                                HelperUtils.getTimeRead(premiumItem.timeToRead),
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontFamily: "Lato",
-                                  fontWeight: FontWeight.w900,
-                                  color: Color.fromRGBO(238, 238, 238, 1),
-                                ),
+                              const SizedBox(height: 8),
+                              // Description
+                              Row(
+                                children: [
+                                  Text(
+                                    premiumItem.section.toUpperCase(),
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontFamily: "Lato",
+                                      fontWeight: FontWeight.w900,
+                                      color: Color.fromRGBO(238, 238, 238, 1),
+                                    ),
+                                  ),
+                                  SizedBox(width: 12),
+                                  Text(
+                                    HelperUtils.getTimeRead(premiumItem.timeToRead),
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontFamily: "Lato",
+                                      fontWeight: FontWeight.w900,
+                                      color: Color.fromRGBO(238, 238, 238, 1),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            )
+                          )),
+                    ],
+                  ),
+                )
             )
           ],
         ));
@@ -298,7 +298,7 @@ class ListItemWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 12),
                     Text(
-                    HelperUtils.getTimeRead(premiumItem.timeToRead),
+                      HelperUtils.getTimeRead(premiumItem.timeToRead),
                       style: const TextStyle(
                         fontSize: 10,
                         fontFamily: "Lato",
@@ -325,35 +325,35 @@ class ListItemWidget extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-          child: Stack(
+            child: Stack(
 
-            children: [
+              children: [
 
-              Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    decoration: const BoxDecoration(
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.vertical(
                             bottom: Radius.circular(4.0)),
-                      color: Color(0xFF29A5BA),
+                        color: Color(0xFF29A5BA),
 
-                    ),
-                padding: EdgeInsets.all(2),
-                child: const Text(
-                  "PREMIUM",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: "Lato",
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ))
-            ],
-          ),
+                      ),
+                      padding: EdgeInsets.all(2),
+                      child: const Text(
+                        "PREMIUM",
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ))
+              ],
+            ),
           ),
 
           // ClipRRect(
