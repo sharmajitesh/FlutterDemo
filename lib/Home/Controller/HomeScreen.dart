@@ -46,27 +46,43 @@ class DrawHomeListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sectionItems = homeResponse.sectionItems;
+
+    List<Widget> widgets = [];
+    for (var entry in sectionItems.asMap().entries) {
+      int index = entry.key;
+      SectionItem sectionItem = entry.value;
+
+      if (index > 0) {
+        widgets.add(SizedBox(height: 5));
+      }
+      if (sectionItem.collectionType == CollectionType.infographics) {
+        widgets.add(Collectionwidget(items: sectionItem.newsItems));
+      } else {
+        if (sectionItem.blockName != "") {
+          widgets.add(
+            Padding(
+              padding: EdgeInsets.only(left: 12, bottom: 12),
+              child: Text(sectionItem.blockName, style: TextStyle(fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
+            )
+          );
+        }
+        widgets.addAll([
+          HeaderWidget(newsItem: sectionItem.newsItems.first),
+          ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
+          SizedBox(height: 18,)]);
+      }
+
+      if (index < sectionItems.length - 1) {
+        widgets.addAll([
+          SectionSeparator(),
+          SizedBox(height: 18,)]);
+      }
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (var sectionItem in sectionItems)
-
-              Column(
-                children: [
-                  if (sectionItem.collectionType == CollectionType.infographics) Collectionwidget(items: sectionItem.newsItems),
-
-                  HeaderWidget(newsItem: sectionItem.newsItems.first),
-                  ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
-                  SizedBox(height: 18,),
-                  SectionSeparator(),
-                  SizedBox(height: 18,)
-                ],
-              )
-            // ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
-            //
-          ],
+          children: widgets
         ),
       ),
     );
