@@ -12,6 +12,10 @@ generated/
 .idea/
 *.iml
 
+# Include shared project configurations
+!.idea/codeStyles/
+!.idea/runConfigurations/
+
 # VS Code
 .vscode/
 
