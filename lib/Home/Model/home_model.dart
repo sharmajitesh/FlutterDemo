@@ -80,6 +80,7 @@ enum CollectionType {
   defaultType,
   pickOfTheDay,
   infographics,
+  premium,
   numberTheory,
 }
 
@@ -91,6 +92,8 @@ CollectionType collectionTypeFromString(String collectionType) {
       return CollectionType.pickOfTheDay;
     case 'collection_infographics':
       return CollectionType.infographics;
+    case 'collection_home_premium':
+      return CollectionType.premium;
     case 'collection_number_theory':
       return CollectionType.numberTheory;
     default:
