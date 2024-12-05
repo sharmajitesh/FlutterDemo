@@ -14,7 +14,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
 
   static List<Widget> tabs = <Widget>[
     Center(child: HomeScreen()),
-    Center(child: Collectionwidget()), //Text('Search Page', style: TextStyle(fontSize: 24))),
+    Center(child: Text('Search Page', style: TextStyle(fontSize: 24))),
     Center(child: Text('Shopping Page', style: TextStyle(fontSize: 24))),
     // Center(child: Text('Messages Page', style: TextStyle(fontSize: 24))),
     // Center(child: Text('Shopping Page', style: TextStyle(fontSize: 24))),
