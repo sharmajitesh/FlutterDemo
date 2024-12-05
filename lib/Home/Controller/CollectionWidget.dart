@@ -3,11 +3,37 @@ import 'package:flutter/material.dart';
 import '../Model/home_model.dart';
 
 class Collectionwidget extends StatelessWidget {
-  final List<NewsItem> items;
-  const Collectionwidget({super.key, required this.items});
+  final SectionItem sectionItem;
+  const Collectionwidget({super.key, required this.sectionItem});
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> widgets = [];
+    if (sectionItem.collectionType == CollectionType.premium) {
+      widgets.addAll([
+        Container(
+          alignment: Alignment.topLeft,
+          margin: EdgeInsets.only(left: 12, top: 21),
+          // image: Image(image: Image.network("https://fastly.picsum.photos/id/83/200/300.jpg?hmac=avqtE9ZSAkPbFtYCXzxg4TeAA-fMWqX6jUQeWI_HjLc")),
+          // image: Image.network("https://fastly.picsum.photos/id/83/200/300.jpg?hmac=avqtE9ZSAkPbFtYCXzxg4TeAA-fMWqX6jUQeWI_HjLc", fit: BoxFit.cover,),
+          child: Image.asset("assets/images/htPremium.png", fit: BoxFit.cover, width: 111, height: 16), // Base image
+        ),
+        SizedBox(height: 20),
+      ]);
+    } else if (sectionItem.blockName.isNotEmpty) {
+      widgets.addAll([
+        Padding(
+            padding: EdgeInsets.only(left: 12, top: 21),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(sectionItem.blockName,
+                  style: TextStyle(fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900, color: Colors.white), overflow: TextOverflow.ellipsis),
+            )
+        ),
+        SizedBox(height: 20),
+      ]);
+    }
     return Container(
       width: double.infinity,
       // height: 260,
@@ -15,17 +41,8 @@ class Collectionwidget extends StatelessWidget {
       color: Color.fromRGBO(56, 56, 61, 1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: widgets + [
           //for showing the title from the economist and view all on right side
-          Padding(
-            padding: EdgeInsets.only(left: 12, top: 16),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text("HT Premium",
-                  style: TextStyle(fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900, color: Colors.white), overflow: TextOverflow.ellipsis),
-            )
-          ),
-          SizedBox(height: 10),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 9, bottom: 0),
@@ -33,7 +50,7 @@ class Collectionwidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  for (var item in items)
+                  for (var item in sectionItem.newsItems)
                     CollectionItem(item: item)
                 ]
 

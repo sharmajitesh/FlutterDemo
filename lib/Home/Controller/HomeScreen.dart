@@ -54,38 +54,40 @@ class DrawHomeListView extends StatelessWidget {
       int index = entry.key;
       SectionItem sectionItem = entry.value;
 
-      if (sectionItem.newsItems.isNotEmpty) {
-        if (sectionItem.collectionType == CollectionType.infographics) {
+      // if (index > 0) {
+      //   widgets.add(SizedBox(height: 5));
+      // }
+      if (sectionItem.collectionType == CollectionType.infographics) {
+        widgets.addAll([
+          InfographicsWidget(sectionItem: sectionItem),
+          SizedBox(height: 18)
+        ]);
+      } else if (sectionItem.collectionType == CollectionType.premium) {
+        widgets.addAll([
+          Collectionwidget(sectionItem: sectionItem),
+          SizedBox(height: 18)
+        ]);
+      } else {
+
+        if (index > 0) {
           widgets.addAll([
-            InfographicsWidget(sectionItem: sectionItem),
-            SizedBox(height: 18)
-          ]);
-        } else if (sectionItem.collectionType == CollectionType.premium) {
-          widgets.addAll([
-            Collectionwidget(items: sectionItem.newsItems),
-            SizedBox(height: 18)
-          ]);
-        } else {
-          if (index > 0) {
-            widgets.addAll([
-              SectionSeparator(),
-              SizedBox(height: 18)]);
-          }
-          if (sectionItem.blockName != "") {
-            widgets.add(
-                Padding(
-                  padding: EdgeInsets.only(left: 12, bottom: 12),
-                  child: Text(sectionItem.blockName, style: TextStyle(color: Color.fromRGBO(33, 33, 33, 1), fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
-                )
-            );
-          }
-          widgets.addAll([
-            HeaderWidget(newsItem: sectionItem.newsItems.first),
-            ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
+            SectionSeparator(),
             SizedBox(height: 18,)]);
         }
+        if (sectionItem.blockName != "") {
+          widgets.add(
+            Padding(
+              padding: EdgeInsets.only(left: 12, bottom: 12),
+              child: Text(sectionItem.blockName, style: TextStyle(color: Color.fromRGBO(33, 33, 33, 1), fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
+            )
+          );
+        }
+        widgets.addAll([
+          HeaderWidget(newsItem: sectionItem.newsItems.first),
+          ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
+          SizedBox(height: 18,)]);
       }
-      }
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
