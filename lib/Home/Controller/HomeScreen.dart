@@ -1,3 +1,4 @@
+import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
 import '../ViewModel/home_viewmodel.dart';
@@ -159,6 +160,8 @@ class ListItemsWidgetState extends State<ListItemsWidget> {
       children: [
         for (var item in widget.items)
           ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
+
+        Collectionwidget(items: widget.items)
       ],
     );
   }
