@@ -342,16 +342,57 @@ class ListItemWidget extends StatelessWidget {
           ),
           const SizedBox(width: 16), // Space between text and image
           // Image (right-aligned)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4.0), // Rounded corners
-
-            child: Image.network(
-              newsItem.wallpaperLarge,
-              height: imageHeight,
-              width: imageWidth,
-              fit: BoxFit.cover,
+          Container(
+            height: imageHeight,
+            width: imageWidth,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(3.0), // Rounded corners
+              image: DecorationImage(
+                image: NetworkImage(newsItem.thumbImage),
+                fit: BoxFit.cover,
+              ),
             ),
+          child: Stack(
+
+            children: [
+
+              Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(4.0)),
+                      color: Color(0xFF29A5BA),
+
+                    ),
+                padding: EdgeInsets.all(2),
+                child: const Text(
+                  "PREMIUM",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ))
+            ],
           ),
+          ),
+
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(4.0), // Rounded corners
+          //
+          //   child: Image.network(
+          //     newsItem.wallpaperLarge,
+          //     height: imageHeight,
+          //     width: imageWidth,
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
         ],
       ),
     );
