@@ -60,7 +60,7 @@ class DrawHomeListView extends StatelessWidget {
               Column(
                 children: [
                   if (sectionItem.collectionType == CollectionType.infographics)
-                    Collectionwidget(items: sectionItem.newsItems),
+                    Collectionwidget(sectionItem: sectionItem),
                   HeaderWidget(newsItem: sectionItem.newsItems.first),
                   ListItemsWidget(items: sectionItem.newsItems.sublist(1)),
                   SizedBox(

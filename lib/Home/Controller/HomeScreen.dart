@@ -61,6 +61,11 @@ class DrawHomeListView extends StatelessWidget {
           InfographicsWidget(sectionItem: sectionItem),
           SizedBox(height: 18)
         ]);
+      } else if (sectionItem.collectionType == CollectionType.premium) {
+        widgets.addAll([
+          Collectionwidget(sectionItem: sectionItem),
+          SizedBox(height: 18)
+        ]);
       } else {
 
         if (index > 0) {
