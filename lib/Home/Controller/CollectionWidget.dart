@@ -195,11 +195,13 @@ class CollectionItem extends StatelessWidget {
     double imageHeight = screenWidth * 0.56;
 
     return Container(
-      margin: EdgeInsets.only(right: 12),
+      margin: EdgeInsets.only(right: 10),
       width: 131,
       height: 155,
       color: Color.fromRGBO(28, 27, 34, 1),
+
       child: Container(
+
         child: Column(
           children: [
             Image.network(item.wallpaperLarge, width: double.infinity, height: 74, fit: BoxFit.fill,),

@@ -80,8 +80,9 @@ enum CollectionType {
   defaultType,
   pickOfTheDay,
   infographics,
+  numberTheory,
   premium,
-  numberTheory
+  economist
 }
 
 CollectionType collectionTypeFromString(String collectionType) {
@@ -96,8 +97,10 @@ CollectionType collectionTypeFromString(String collectionType) {
       return CollectionType.premium;
     case 'collection_number_theory':
       return CollectionType.numberTheory;
+    case 'collection_home_economist':
+      return CollectionType.economist;
     default:
       return CollectionType.defaultType;
-      throw ArgumentError('Unknown collection type: $collectionType');
+      // throw ArgumentError('Unknown collection type: $collectionType');
   }
 }

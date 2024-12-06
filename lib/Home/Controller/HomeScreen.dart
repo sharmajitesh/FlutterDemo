@@ -56,11 +56,19 @@ class DrawHomeListView extends StatelessWidget {
 
       if (sectionItem.newsItems.isNotEmpty) {
         if (sectionItem.collectionType == CollectionType.infographics) {
+          // if (index > 0) {
+          //   widgets.add(SizedBox(height: 5));
+          // }
           widgets.addAll([
             InfographicsWidget(sectionItem: sectionItem),
             SizedBox(height: 18)
           ]);
         } else if (sectionItem.collectionType == CollectionType.premium) {
+          widgets.addAll([
+            Collectionwidget(sectionItem: sectionItem),
+            SizedBox(height: 18)
+          ]);
+        } else if (sectionItem.collectionType == CollectionType.economist) {
           widgets.addAll([
             Collectionwidget(sectionItem: sectionItem),
             SizedBox(height: 18)
@@ -75,7 +83,11 @@ class DrawHomeListView extends StatelessWidget {
             widgets.add(
                 Padding(
                   padding: EdgeInsets.only(left: 12, bottom: 12),
-                  child: Text(sectionItem.blockName, style: TextStyle(color: Color.fromRGBO(33, 33, 33, 1), fontSize: 20, fontFamily: "Lato", fontWeight: FontWeight.w900)),
+                  child: Text(sectionItem.blockName, style: TextStyle(
+                      color: Color.fromRGBO(33, 33, 33, 1),
+                      fontSize: 20,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w900)),
                 )
             );
           }
