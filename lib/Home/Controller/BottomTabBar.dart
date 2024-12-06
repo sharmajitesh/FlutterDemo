@@ -35,7 +35,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.workspace_premium_sharp), label: 'Premium'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'HT@100'),
           // BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Explore'),
           // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
         ],

@@ -69,12 +69,11 @@ class _HT100State extends State<HT100> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("HT @100"),
+        title: const Text("HT One"),
         bottom: TabBar(
           controller: _tabController,
           tabs: HT100List.map((tab) => Tab(
             text: tab["tabTitle"] as String,
-            icon: Icon(tab["icon"] as IconData),
           )).toList(),
         ),
       ),
