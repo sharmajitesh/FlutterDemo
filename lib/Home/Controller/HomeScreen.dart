@@ -1,4 +1,5 @@
 import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
+import 'package:HT_ONE/Home/Controller/PickOfDayWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
 import '../ViewModel/home_viewmodel.dart';
@@ -55,6 +56,12 @@ class DrawHomeListView extends StatelessWidget {
       SectionItem sectionItem = entry.value;
 
       if (sectionItem.newsItems.isNotEmpty) {
+        if (sectionItem.collectionType == CollectionType.pickOfTheDay) {
+          widgets.addAll([
+            Pickofdaywidget(items: sectionItem.newsItems),
+            SizedBox(height: 18)
+          ]);
+        }
         if (sectionItem.collectionType == CollectionType.infographics) {
           // if (index > 0) {
           //   widgets.add(SizedBox(height: 5));
