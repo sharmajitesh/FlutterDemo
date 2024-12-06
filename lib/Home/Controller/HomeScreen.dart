@@ -58,7 +58,7 @@ class DrawHomeListView extends StatelessWidget {
       if (sectionItem.newsItems.isNotEmpty) {
         if (sectionItem.collectionType == CollectionType.pickOfTheDay) {
           widgets.addAll([
-            Pickofdaywidget(items: sectionItem.newsItems),
+            Pickofdaywidget(item: sectionItem.newsItems.first),
             SizedBox(height: 18)
           ]);
         }
