@@ -61,8 +61,7 @@ class DrawHomeListView extends StatelessWidget {
             Pickofdaywidget(item: sectionItem.newsItems.first),
             SizedBox(height: 18)
           ]);
-        }
-        if (sectionItem.collectionType == CollectionType.infographics) {
+        } else if (sectionItem.collectionType == CollectionType.infographics) {
           // if (index > 0) {
           //   widgets.add(SizedBox(height: 5));
           // }
