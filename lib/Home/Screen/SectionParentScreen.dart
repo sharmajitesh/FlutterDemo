@@ -67,9 +67,9 @@ class _SectionParentState extends State<SectionParentScreen> with SingleTickerPr
               labelColor: const Color.fromARGB(255, 66, 66, 66), // Color for selected tab
               unselectedLabelColor: const Color.fromARGB(255, 117, 117, 117),/*const Color.fromRGBO(117, 117, 117, 100),*/ // Color for unselected tabs
               indicatorColor: const Color.fromARGB(255,66,66,66),
-              labelStyle: const TextStyle(fontSize:  16,
+              labelStyle: const TextStyle(fontSize:  15,
                 fontFamily: "Lato",  fontWeight: FontWeight.w900, fontStyle: FontStyle.normal),
-              unselectedLabelStyle: const TextStyle(fontSize: 16,
+              unselectedLabelStyle: const TextStyle(fontSize: 15,
                    fontWeight: FontWeight.w700 ),
               tabs: [
                 for (var tab in bottomNavSections!) Tab(child: Text(

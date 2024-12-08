@@ -18,37 +18,49 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
        title: Row(
 
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
       children: [
         SvgPicture.asset('assets/images/ic_hamburger.svg'),
-        const SizedBox(width: 8),
+        //const SizedBox(width: 8),
         SvgPicture.asset('assets/images/ic_toolbar_logo.svg'),
+        //const SizedBox(width: 8),
+        SvgPicture.asset('assets/images/ic_e_paper.svg'),
+       // const SizedBox(width: 8),
+        SvgPicture.asset('assets/images/ic_search.svg'),
+       // const SizedBox(width: 8),
+        SvgPicture.asset('assets/images/ic_profile.svg'),
              // Optional app title
       ],
     ),
 
-        actions: [
-          IconButton(
-            icon:SvgPicture.asset('assets/images/ic_e_paper.svg'),
-            onPressed: () {
-              // Add action for Profile
-            },
-          ),
-          IconButton(
-            icon:SvgPicture.asset('assets/images/ic_search.svg'),
-            onPressed: () {
-              // Add action for Profile
-            },
-          ),
-          // User Icon
-          IconButton(
-            icon:SvgPicture.asset('assets/images/ic_profile.svg'),
-            onPressed: () {
-              // Add action for Profile
-            },
-          ),
-        ],
+          /*  actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Adjust spacing as needed
+                children: [
+
+                  IconButton(
+                    icon: SvgPicture.asset('assets/images/ic_e_paper.svg'),
+                    onPressed: () {
+                      // Add action
+                    },
+                  ),
+                  IconButton(
+                    icon: SvgPicture.asset('assets/images/ic_search.svg'),
+                    onPressed: () {
+                      // Add action
+                    },
+                  ),
+                  IconButton(
+                    icon: SvgPicture.asset('assets/images/ic_profile.svg'),
+                    onPressed: () {
+                      // Add action
+                    },
+                  ),
+                ],
+              ),
+            ],*/
+
 
       ),
         //ShadowDividerWidget(),

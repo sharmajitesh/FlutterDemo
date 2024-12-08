@@ -1,4 +1,5 @@
 import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
+import 'package:HT_ONE/Home/Controller/PickOfDayWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
 import '../Model/AppConfigResponse.dart';
@@ -61,7 +62,12 @@ class DrawHomeListView extends StatelessWidget {
       SectionItem sectionItem = entry.value;
 
       if (sectionItem.newsItems.isNotEmpty) {
-        if (sectionItem.collectionType == CollectionType.infographics) {
+        if (sectionItem.collectionType == CollectionType.pickOfTheDay) {
+          widgets.addAll([
+            Pickofdaywidget(item: sectionItem.newsItems.first),
+            SizedBox(height: 18)
+          ]);
+        } else if (sectionItem.collectionType == CollectionType.infographics) {
           // if (index > 0) {
           //   widgets.add(SizedBox(height: 5));
           // }
@@ -148,7 +154,7 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       height: imageHeight, // Height of the header
       width: double.infinity,
-      margin: EdgeInsets.only(left: 12, right: 12),// Full width
+      margin: EdgeInsets.only(left: 12, right: 12, top: 12),// Full width
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0), // Apply corner radius here
         image: DecorationImage(
