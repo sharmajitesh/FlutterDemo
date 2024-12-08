@@ -1,3 +1,4 @@
+import 'package:HT_ONE/Home/Screen/HtHundred.dart';
 import 'package:HT_ONE/Home/Screen/PremiumScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Home/Controller/HomeScreen.dart';
@@ -15,7 +16,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
   static List<Widget> tabs = <Widget>[
     Center(child: HomeScreen()),
     Center(child: Premiumscreen()),
-    Center(child: Text('Shopping Page', style: TextStyle(fontSize: 24))),
+    Center(child: HT100()),
     // Center(child: Text('Messages Page', style: TextStyle(fontSize: 24))),
     // Center(child: Text('Shopping Page', style: TextStyle(fontSize: 24))),
   ];
@@ -34,7 +35,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.workspace_premium_sharp), label: 'Premium'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'HT@100'),
           // BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Explore'),
           // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
         ],
