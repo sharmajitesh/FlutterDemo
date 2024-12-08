@@ -1,14 +1,20 @@
 import 'package:HT_ONE/Home/Controller/CollectionWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
+import '../Model/AppConfigResponse.dart';
+import '../Screen/BaseScreen.dart';
 import '../ViewModel/home_viewmodel.dart';
 import '../Model/home_model.dart';
 import 'InfographicsWidget.dart';
 import 'CollectionWidget.dart';
 
-class HomeScreen extends StatefulWidget {
-@override
-_HomeScreenState createState() => _HomeScreenState();
+class HomeScreen extends BaseScreen {
+  Section section;
+  int position;
+  HomeScreen({super.key, required this.section, required this.position});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
   late Future<HomeResponse?> _homeData;
@@ -16,12 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _homeData = ApiService().fetchHomeData();
+    _homeData = ApiService().fetchHomeData(widget.section.feedURL);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("HT ONE")),
+      backgroundColor: Colors.white,
       body: FutureBuilder<HomeResponse?>(
         future: _homeData,
         builder: (context, snapshot) {
@@ -83,7 +89,7 @@ class DrawHomeListView extends StatelessWidget {
             widgets.add(
                 Padding(
                   padding: EdgeInsets.only(left: 12, bottom: 12),
-                  child: Text(sectionItem.blockName, style: TextStyle(
+                  child: Text(sectionItem.blockName, style: const TextStyle(
                       color: Color.fromRGBO(33, 33, 33, 1),
                       fontSize: 20,
                       fontFamily: "Lato",
@@ -99,6 +105,7 @@ class DrawHomeListView extends StatelessWidget {
       }
     }
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

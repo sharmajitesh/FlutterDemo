@@ -3,24 +3,32 @@ import 'package:HT_ONE/Home/ViewModel/premium_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:HT_ONE/Helper.dart';
 
-class Premiumscreen extends StatefulWidget {
+import '../Model/AppConfigResponse.dart';
+import 'BaseScreen.dart';
+
+class PremiumScreen extends BaseScreen {
+  BottomNavSection bottomNavSection;
+  int position;
+  PremiumScreen({Key? key, required this.bottomNavSection, required this.position});
+
   @override
   _Premiumscreen createState() => _Premiumscreen();
 }
 
-class _Premiumscreen extends State<Premiumscreen> {
+class _Premiumscreen extends State<PremiumScreen> {
   late Future<PremiumResponse?> _premiumData;
 
   @override
   void initState() {
     super.initState();
-    _premiumData = PremiumApiService().fetchPremiumData();
+    print("Manoj::Premium:initState: ${widget.bottomNavSection.feedUrl}::::${widget.bottomNavSection.displayName}");
+    _premiumData = PremiumApiService().fetchPremiumData(widget.bottomNavSection.feedUrl??"");
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("HT One")),
       body: FutureBuilder<PremiumResponse?>(
         future: _premiumData,
         builder: (context, snapshot) {
