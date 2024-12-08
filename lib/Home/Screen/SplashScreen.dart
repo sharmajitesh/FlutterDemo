@@ -35,7 +35,7 @@ class _SplashscreenState extends State<Splashscreen> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show splash screen while waiting
           return Container(
-                  color: const Color.fromRGBO(0, 112, 255, 100),
+                  color: const Color.fromARGB(255, 0, 177, 205),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   alignment: Alignment.center,
