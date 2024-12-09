@@ -224,6 +224,22 @@ class HeaderWidget extends StatelessWidget {
     );
   }
 }
+
+
+class ListItemSeparator extends StatelessWidget {
+  const ListItemSeparator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 12, right: 12),
+      height: 0.75,
+      width: double.infinity,
+      color: Color(0xEEEEEEFF),
+    );
+  }
+}
+
 class ListItemsWidget extends StatefulWidget {
   final List<NewsItem> items;
 
@@ -236,10 +252,17 @@ class ListItemsWidgetState extends State<ListItemsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgetList = [];
+    for(var item in widget.items) {
+      if(item == widget.items.first) {
+        widgetList.add(SizedBox(height: 10));
+      }
+      widgetList.add(ListItemSeparator());
+      widgetList.add(ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)));
+    }
     return Column(
       children: [
-        for (var item in widget.items)
-          ListItemWidget(newsItem: item, timeToRead: HelperUtils.getTimeRead(item.timeToRead)),
+        ...widgetList,
       ],
     );
   }

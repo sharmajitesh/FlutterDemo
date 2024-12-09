@@ -74,7 +74,7 @@ class Pickofdaywidget extends StatelessWidget {
                   item.headline,
                   style: const TextStyle(
                     fontSize: 20,
-                    fontFamily: "Lato",
+                    fontFamily: "Merriweather",
                     fontWeight: FontWeight.bold,
                      color: Color.fromRGBO(33, 33, 33, 1)
                   ),
