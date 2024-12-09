@@ -161,9 +161,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
 
   BaseScreen getBottomTabScreen(BottomNavSection bottomNavSection , int position)
   {
-    print("Manoj::bottomNavSection starting:: ${bottomNavSection.displayName}");
     if (bottomNavSection.isPremium == true) {
-      print("Manoj::bottomNavSection:: ${bottomNavSection.displayName}");
       return PremiumScreen(bottomNavSection: bottomNavSection, position: position);
     }else if (bottomNavSection.isWebStoriesSection == true) {
       return  WebViewScreen(webUrl: bottomNavSection.feedUrl??"",position: position);
@@ -188,16 +186,9 @@ class _BottomTabBarState extends State<BottomTabBar> {
           sectionUrl: bottomNavSection.sectionUrl,
           template: bottomNavSection.template??"",
       );
-
-      return SectionItemScreen(section: section,position: position);
+      return SectionItemScreen(key: ValueKey("${section.sectionID}_${position}"), section: section,position: position);
     }
-
-
-
-
-
   }
-
 }
 
 

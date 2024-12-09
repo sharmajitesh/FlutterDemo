@@ -14,8 +14,6 @@ class BigNewsItemWidget extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     // Calculate the height of the image based on the width
     double imageHeight = screenWidth * 0.56;
-    print("Manoj to big screen id:::+${sectionItem.itemId}::::${sectionItem.headLine}");
-
 
     return Container(
       height: imageHeight, // Height of the header

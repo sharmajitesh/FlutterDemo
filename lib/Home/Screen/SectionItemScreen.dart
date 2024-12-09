@@ -42,7 +42,6 @@ class _SectionItemState extends State<SectionItemScreen> {
           } else {
             final homeResponse = snapshot.data;
             List<SectionItem>? sectionList = homeResponse?.content.sectionItems;
-            print("Manoj to section id:::+${sectionList?.length}::${sectionList?.isNotEmpty}");
 
             if(sectionList?.isNotEmpty==true)
               {
@@ -51,7 +50,6 @@ class _SectionItemState extends State<SectionItemScreen> {
                   itemCount: sectionList?.length,
                   itemBuilder: (context, index) {
                     SectionItem? sectionItem = sectionList![index];
-                    print("Manoj to section id:::+${sectionItem.itemId}::::${sectionItem.headLine}");
                     if (sectionItem!=null) {
                       if(index==0)
                         {
@@ -59,10 +57,7 @@ class _SectionItemState extends State<SectionItemScreen> {
                         }else
                           {
                           return  SmallNewsItemWidget(sectionItem: sectionItem, position: index);
-
                           }
-
-
                     } else {
                       return const SizedBox();
                     }

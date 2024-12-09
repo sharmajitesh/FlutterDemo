@@ -7,11 +7,9 @@ class PremiumApiService {
 
   Future<PremiumResponse?> fetchPremiumData(String feedUrl) async {
     try {
-      print("Manoj::Premium:: $feedUrl");
       final response = await http.get(Uri.parse(feedUrl));
 
       if (response.statusCode == 200) {
-        print("Manoj::Premium:: $response");
         final data = json.decode(response.body)['content'];
         return PremiumResponse.fromJson(data);
       } else {

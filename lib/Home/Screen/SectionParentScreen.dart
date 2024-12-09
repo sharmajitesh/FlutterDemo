@@ -33,7 +33,6 @@ class _SectionParentState extends State<SectionParentScreen> with SingleTickerPr
     // Initialize TabController with the length of the tabs
    //final appConfigProvider = Provider.of<AppConfigProvider>(context, listen: false);
     BottomNavSection? bottomNavSection = widget.bottomNavSection;//appConfigProvider.appConfigResponse?.bottomNavSections[0];
-    print("Manoj::Premium:initState: ${widget.bottomNavSection.feedUrl}::::${widget.bottomNavSection.displayName}");
 
     int tabCount=bottomNavSection?.sections?.length??0;
     _tabController = TabController(length: tabCount, vsync: this);
@@ -84,7 +83,6 @@ class _SectionParentState extends State<SectionParentScreen> with SingleTickerPr
 
             children: List.generate(tabCount, (index) {
               Section section=bottomNavSections[index];
-              print("Manoj::section:: ${section.displayName}");
              return getSectionScreen(section,index);
 
 
