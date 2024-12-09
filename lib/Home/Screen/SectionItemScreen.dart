@@ -57,23 +57,13 @@ class _SectionItemState extends State<SectionItemScreen> {
                          return BigNewsItemWidget(sectionItem: sectionItem, position: index);
                         }else
                           {
-                            if(index==1){
-                              return Column(
+                            return Column(
                                 children: [
-                                  SizedBox(height: 10),
+                                  if(index==1) SizedBox(height: 10),
                                   SmallNewsSeparator(),
                                   SmallNewsItemWidget(sectionItem: sectionItem, position: index),
                                 ],
                               );
-                            }else{
-                              return Column(
-                                children: [
-                                  SmallNewsSeparator(),
-                                  SmallNewsItemWidget(sectionItem: sectionItem, position: index),
-                                ],
-                              );
-                            }
-
                           }
                     } else {
                       return const SizedBox();
