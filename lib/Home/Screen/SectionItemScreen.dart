@@ -3,6 +3,7 @@ import 'package:HT_ONE/Home/Model/SectionResponse.dart';
 import 'package:HT_ONE/Home/ViewModel/SectionItemViewModel.dart';
 import 'package:HT_ONE/Home/Widget/BigNewsItemWidget.dart';
 import 'package:HT_ONE/Home/Widget/SmallNewsItemWidget.dart';
+import 'package:HT_ONE/Home/Widget/SmallNewsSeparator.dart';
 import 'package:flutter/material.dart';
 
 import '../Model/AppConfigResponse.dart';
@@ -56,7 +57,23 @@ class _SectionItemState extends State<SectionItemScreen> {
                          return BigNewsItemWidget(sectionItem: sectionItem, position: index);
                         }else
                           {
-                          return  SmallNewsItemWidget(sectionItem: sectionItem, position: index);
+                            if(index==1){
+                              return Column(
+                                children: [
+                                  SizedBox(height: 10),
+                                  SmallNewsSeparator(),
+                                  SmallNewsItemWidget(sectionItem: sectionItem, position: index),
+                                ],
+                              );
+                            }else{
+                              return Column(
+                                children: [
+                                  SmallNewsSeparator(),
+                                  SmallNewsItemWidget(sectionItem: sectionItem, position: index),
+                                ],
+                              );
+                            }
+
                           }
                     } else {
                       return const SizedBox();
