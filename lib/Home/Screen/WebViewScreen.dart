@@ -17,6 +17,8 @@ class WebViewScreen extends BaseScreen {
 class _WebViewScreenState extends State<WebViewScreen> with SingleTickerProviderStateMixin {
 
   late WebViewController _controller;
+  bool _isLoading = true;
+
 
   @override
   void initState() {
@@ -32,9 +34,15 @@ class _WebViewScreenState extends State<WebViewScreen> with SingleTickerProvider
               debugPrint('Loading progress: $progress%');
             },
             onPageStarted: (String url) {
+              setState(() {
+                _isLoading = true;
+              });
               debugPrint('Page started loading: $url');
             },
             onPageFinished: (String url) {
+              setState(() {
+                _isLoading = false;
+              });
               debugPrint('Page finished loading: $url');
             },
             onHttpError: (HttpResponseError error) {
@@ -62,7 +70,15 @@ class _WebViewScreenState extends State<WebViewScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: WebViewWidget(controller: _controller),
+      body: Stack(
+        children: [
+          WebViewWidget(controller: _controller),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      ),
     );
   }
 }
