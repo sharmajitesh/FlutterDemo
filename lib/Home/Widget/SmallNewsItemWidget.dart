@@ -13,7 +13,6 @@ class SmallNewsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Manoj to small screen id:::+${sectionItem.itemId}::::${sectionItem.headLine}");
 
     double imageHeight = 62;
     double imageWidth = imageHeight * 1.33;

@@ -11,9 +11,7 @@ class SectionItemViewModel {
       final response = await http.get(Uri.parse(feedUrl));
 
       if (response.statusCode == 200) {
-       // print("Manoj to section:::+$feedUrl::::${response.body}");
         SectionResponse sectionResponse= SectionResponse.parseJson(response.body);
-      //  print("Manoj to section:::+$feedUrl::::${sectionResponse.content.sectionItems?.length}");
         return sectionResponse;
       } else {
         print("Failed to load data: ${response.statusCode}");

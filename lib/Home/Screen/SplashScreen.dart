@@ -47,13 +47,9 @@ class _SplashscreenState extends State<Splashscreen> {
 
 
         } else if (snapshot.hasData) {
-        // log('Manoj::data:splash--: ${snapshot.data?.bottomNavSection[0].displayName}');
           dataService.updateAppConfigData(snapshot.data);
           return const HomePage();
         } else {
-          // Handle errors
-          //log('Manoj::data:splash777--: ${snapshot.data?.bottomNavSection}');
-
           return  Container(
               color: const Color.fromRGBO(0, 112, 255, 100),
               width: MediaQuery.of(context).size.width,

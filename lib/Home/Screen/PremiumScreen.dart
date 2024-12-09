@@ -21,7 +21,6 @@ class _Premiumscreen extends State<PremiumScreen> {
   @override
   void initState() {
     super.initState();
-    print("Manoj::Premium:initState: ${widget.bottomNavSection.feedUrl}::::${widget.bottomNavSection.displayName}");
     _premiumData = PremiumApiService().fetchPremiumData(widget.bottomNavSection.feedUrl??"");
 
   }
